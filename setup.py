@@ -21,6 +21,7 @@ opts = dict(name=NAME,
             platforms=PLATFORMS,
             version=VERSION,
             packages=PACKAGES,
+            scripts=["datalad-osf"],
             install_requires=REQUIRES,
             requires=REQUIRES)
 

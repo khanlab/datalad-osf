@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+"""
+Python CLI to create Datalad repo from OSF
+"""
+
+def get_parser():
+    """
+    Argument parser
+    """
+
+    from argparse import ArgumentParser, RawTextHelpFormatter
+    from datalad_osf.version import VERSION
+
+    parser = ArgumentParser(description="Utiltiy to download OSF project into "
+                            "current datalad dataset. Container adapted "
+                            "from https://github/com/templateflow/datalad-osf, "
+                            "created by Rastko Ciric.",
+                            formatter_class=RawTextHelpFormatter)
+
+    # Version option
+    parser.add_argument("-v", "--version", dest="version",
+                        action="version", version=VERSION)
+
+    # ArgumentParser
+    g_arg = parser.add_argument_group("Arguments")
+    g_arg.add_argument("key", help="OSF Project Key - set of characters "
+                                   "following project's URL "
+                                   "(e.g. osf.io/<key>)")
+    g_arg.add_argument("-s", "--subset", dest="subset", default=None,
+                        help="Optional argument. Subset of data to include")
+
+    return parser
+
+def main():
+    """
+    Entry point of code
+    """
+    import datalad_osf
+
+    args=get_parser().parse_args()
+
+    datalad_osf.update_recursive(args.key, subset=args.subset)
+
+
+if __name__ == "__main__":
+    main()

@@ -79,6 +79,7 @@ def osf_to_csv(osf_dict, csv, subset=None):
         If this value is defined, then only the specified subdirectories of
         the project will be included.
     """
+
     if subset is not None:
         subset_re = '/{}'.format(subset) if subset[0] != '/' else subset
         subset_re = '^{}'.format(subset_re)
@@ -88,7 +89,7 @@ def osf_to_csv(osf_dict, csv, subset=None):
         for item in osf_dict['data']:
             name = item['attributes']['name']
             ext = ''.join(pathlib.Path(name).suffixes)
-            if item['attributes']['kind'] == 'file' and ext == '.nii.gz':
+            if item['attributes']['kind'] == 'file':  # and ext == '.nii.gz':
                 sha = item['attributes']['extra']['hashes']['sha256']
                 url = item['links']['download']
                 path = item['attributes']['materialized']

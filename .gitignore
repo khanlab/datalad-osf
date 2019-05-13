@@ -1,0 +1,5 @@
+datalad_venv/
+dist/
+build/
+datalad_osf.egg-info/
+*.pyc
