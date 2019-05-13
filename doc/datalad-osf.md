@@ -100,25 +100,24 @@ _Note: Conversion of the dataset will store a (temporary) copy of the data local
 9. Fork and install the [conp-dataset repository](https://github.com/CONP-PCNO/conp-dataset). _(Forking of the dataset is not required if publishing through khanlab-datasets)_
 
     ```
-    datalad install git@github.com:<username>/conp-dataset
+    datalad install https://github.com/<username>/conp-dataset
     ```
 
     If adding datasets from `khanlab-datasets`, first pull any changes to forked repository to ensure copy is up to date. Install from (https://github.com/khanlab-datasets/conp-dataset)
 
     ```
-    datalad install git@github.com/khanlab-datasets/conp-dataset
+    datalad install https://github.com/khanlab-datasets/conp-dataset
     ```
 
-10. Navigate to the installed conp-dataset. Add dataset to be shared as a submodule to the conp-dataset fork.
+10. Navigate to the installed conp-dataset. Check that you are currently working on the master branch `git checkout master`. Add dataset to be shared as a submodule to the conp-dataset fork.
 ```
-git submodule add http://github.com/khanlab-datasets/<project_name>.git investigators/Khanlab<project_name>
+git submodule add https://github.com/khanlab-datasets/<project_name>.git investigators/Khanlab/<project_name>
 ```
 
 11. Save and publish the modifications to fork.
 ```
-datalad add --to-git .gitmodules
-datalad save
-datalad publish
+git commit -m "Added investigators/Khanlab/<project_name>"
+git push
 ```
 
 11. Create pull request to merge dataset into main conp-dataset repository with additional dataset.
